@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raj Gopi Kalyan | Portfolio</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts: Orbitron (Tech) & Inter (Readable) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* --- RESET & BASE --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #05080f;
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.2rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* --- ANIMATED CYBER BACKGROUND --- */
+    .cyber-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+      background: 
+        linear-gradient(rgba(20, 30, 48, 0.9), rgba(5, 8, 15, 0.95)),
+        repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(56, 189, 248, 0.05) 49px, rgba(56, 189, 248, 0.05) 50px),
+        repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(56, 189, 248, 0.05) 49px, rgba(56, 189, 248, 0.05) 50px);
+      animation: gridMove 20s linear infinite;
+    }
+    @keyframes gridMove {
+      0% { background-position: 0 0, 0 0, 0 0; }
+      100% { background-position: 0 0, 0 50px, 50px 0; }
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.6;
+      animation: orbFloat 15s ease-in-out infinite alternate;
+    }
+    .orb1 { width: 400px; height: 400px; background: #38bdf8; top: -100px; left: -100px; animation-delay: 0s; }
+    .orb2 { width: 500px; height: 500px; background: #818cf8; bottom: -150px; right: -150px; animation-delay: 4s; }
+    .orb3 { width: 300px; height: 300px; background: #f472b6; top: 50%; left: 50%; animation-delay: 8s; filter: blur(120px); }
+    
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 50px) scale(1.2); }
+    }
+
+    /* --- MAIN CARD (Holographic Glass) --- */
+    .portfolio-card {
+      max-width: 1400px;
+      width: 100%;
+      background: rgba(10, 15, 30, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), inset 0 0 60px rgba(56, 189, 248, 0.05);
+      padding: 2.5rem;
+      position: relative;
+      z-index: 10;
+      transition: all 0.4s ease;
+    }
+    
+    .portfolio-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px; right: -1px; bottom: -1px;
+      border-radius: 2.5rem;
+      background: linear-gradient(45deg, #38bdf8, transparent, #818cf8, transparent);
+      background-size: 300% 300%;
+      z-index: -1;
+      animation: borderGlow 10s ease-in-out infinite;
+      opacity: 0.3;
+    }
+    @keyframes borderGlow {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* --- HEADER --- */
+    .header-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      gap: 1.5rem;
+    }
+
+    .profile-photo {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* PHOTO FRAME (Holographic) */
+    .photo-frame {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg, #00d4ff, #6c63ff, #ff4ecd);
+    box-shadow:
+        0 0 20px #00d4ff,
+        0 0 40px rgba(0,212,255,0.5),
+        0 0 60px rgba(108,99,255,0.4);
+    transition: 0.4s ease;
+}
+
+.photo-frame:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 0 30px #00d4ff,
+        0 0 60px rgba(0,212,255,0.7),
+        0 0 90px rgba(108,99,255,0.6);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #05080f;
+}
+
+    .name-title h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: linear-gradient(to right, #f8fafc, #94a3b8, #38bdf8);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+      animation: shimmerText 3s linear infinite;
+    }
+    @keyframes shimmerText {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
+    }
+
+    .name-title .badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: #38bdf8;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.65rem;
+      padding: 0.2rem 1.2rem;
+      border-radius: 40px;
+      margin-left: 0.6rem;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+      vertical-align: middle;
+    }
+
+    .subhead {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-top: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.8rem;
+      letter-spacing: 0.5px;
+    }
+    .subhead i { color: #818cf8; width: 1.4rem; }
+
+    .action-block {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .neon-btn {
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.6rem 1.8rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #f8fafc;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      transition: 0.3s;
+      box-shadow: 0 0 10px transparent;
+      cursor: pointer;
+    }
+    .neon-btn:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: #38bdf8;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      transform: translateY(-3px) scale(1.02);
+    }
+    .neon-btn i { color: #38bdf8; }
+
+    /* --- CONTACT BAR --- */
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 60px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 2.2rem;
+    }
+    .contact-links a {
+      text-decoration: none;
+      color: #cbd5e1;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      transition: 0.3s;
+      position: relative;
+    }
+    .contact-links a i { color: #38bdf8; transition: 0.3s; }
+    .contact-links a:hover {
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    }
+    .contact-links a:hover i { color: #f472b6; transform: scale(1.2); }
+
+    .status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.6; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+    /* --- GRID LAYOUT --- */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 2.2fr;
+      gap: 2.5rem;
+    }
+
+    /* --- GLASS PANELS --- */
+    .info-card, .resume-section {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 2rem;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .info-card::after, .resume-section::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05), transparent 60%);
+      opacity: 0;
+      transition: 0.6s;
+      pointer-events: none;
+    }
+    .info-card:hover::after, .resume-section:hover::after {
+      opacity: 1;
+    }
+    .info-card:hover, .resume-section:hover {
+      border-color: rgba(56, 189, 248, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .info-card h3, .resume-section h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      letter-spacing: 1px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 0.8rem;
+    }
+    .info-card h3 i, .resume-section h3 i { color: #38bdf8; font-size: 1.1rem; }
+
+    .left-panel { display: flex; flex-direction: column; gap: 2rem; }
+    .detail-item {
+      display: flex;
+      margin-bottom: 0.8rem;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .detail-item i { width: 1.4rem; color: #818cf8; font-size: 1rem; margin-top: 0.2rem; }
+    .detail-item .label { font-weight: 600; color: #64748b; min-width: 80px; font-size: 0.85rem; text-transform: uppercase; }
+    .detail-item .value { color: #e2e8f0; font-weight: 450; }
+
+    /* SKILL BARS */
+    .skill-group { margin-bottom: 1.5rem; }
+    .skill-group-title { font-weight: 600; color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 1px; }
+    
+    .skill-bar-wrapper { margin-bottom: 0.8rem; }
+    .skill-bar-info { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.2rem; color: #cbd5e1; }
+    .skill-track { width: 100%; height: 6px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; position: relative; }
+    .skill-fill { height: 100%; border-radius: 10px; background: linear-gradient(90deg, #38bdf8, #818cf8); position: relative; animation: fillBar 1.5s ease-out forwards; width: 0; }
+    
+    .w-90 { --w: 90%; } .w-85 { --w: 85%; } .w-80 { --w: 80%; } .w-75 { --w: 75%; } .w-70 { --w: 70%; } .w-65 { --w: 65%; } .w-60 { --w: 60%; }
+    @keyframes fillBar { to { width: var(--w); } }
+
+    /* HEX GRID */
+    .hex-grid {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+    }
+    .hex-item {
+      background: rgba(56, 189, 248, 0.05);
+      border: 1px solid rgba(56, 189, 248, 0.1);
+      padding: 0.4rem 1.2rem;
+      clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+      font-size: 0.75rem;
+      color: #cbd5e1;
+      transition: 0.3s;
+    }
+    .hex-item:hover {
+      background: rgba(56, 189, 248, 0.2);
+      transform: scale(1.05);
+      color: #ffffff;
+    }
+    .hex-item i { color: #38bdf8; margin-right: 5px; }
+
+    .right-panel { display: flex; flex-direction: column; gap: 2rem; }
+    .edu-item { margin-bottom: 1rem; }
+    .edu-title { font-weight: 700; color: #f8fafc; font-size: 1.1rem; }
+    .edu-meta { color: #94a3b8; font-size: 0.9rem; display: flex; flex-wrap: wrap; gap: 0.3rem 1.8rem; margin-top: 0.2rem; }
+    .edu-meta i { color: #818cf8; width: 1.2rem; }
+
+    .tech-pills {
+      display: flex; flex-wrap: wrap; gap: 0.6rem 1rem; margin: 1rem 0;
+    }
+    .pill {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .pill i { color: #38bdf8; }
+    .pill.highlight {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+
+    .footer-note {
+      font-size: 0.7rem;
+      color: #475569;
+      text-align: right;
+      margin-top: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .footer-note i { color: #f472b6; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1000px) {
+      .grid-2col { grid-template-columns: 1fr; }
+      .header-row { flex-direction: column; align-items: stretch; }
+      .profile-photo { flex-wrap: wrap; justify-content: center; text-align: center; }
+      .action-block { justify-content: center; flex-wrap: wrap; }
+      .contact-wrapper { flex-direction: column; align-items: center; text-align: center; border-radius: 2rem; }
+      .contact-links { justify-content: center; }
+    }
+    @media (max-width: 550px) {
+      .portfolio-card { padding: 1.2rem; }
+      .name-title h1 { font-size: 1.8rem; }
+      .photo-frame { width: 90px; height: 90px; }
+      .hex-item { clip-path: none; border-radius: 40px; padding: 0.3rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cyber-bg">
+    <div class="glow-orb orb1"></div>
+    <div class="glow-orb orb2"></div>
+    <div class="glow-orb orb3"></div>
+  </div>
+
+<div class="portfolio-card">
+
+  <!-- HEADER -->
+  <div class="header-row">
+    <div class="profile-photo">
+      <div class="photo-frame">
+        <!-- REPLACE src with your actual image or keep placeholder -->
+        <img src="raj.jpeg" alt="Raj Gopi Kalyan">
+      </div>
+      <div class="name-title">
+        <h1>Raj Gopi Kalyan <span class="badge">B.Tech IT</span></h1>
+        <div class="subhead">
+          <span><i class="fas fa-calendar-alt"></i> 2nd Year</span>
+          <span><i class="fas fa-university"></i> Ramco Institute of Technology</span>
+          <span><i class="fas fa-map-pin"></i> 2025 – 2029</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-block">
+      <!-- Resume preview & download in one button + separate download -->
+      <a href="resume.pdf" target="_blank" class="neon-btn">
+    <i class="fas fa-file-pdf"></i> Preview Resume
+</a>
+      <a href="resume.pdf" download class="neon-btn">
+    <i class="fas fa-download"></i> Download Resume
+</a>
+
+  <!-- CONTACT BAR -->
+  <div class="contact-wrapper">
+    <div class="contact-links">
+      <a href="mailto:rgkofficial.1820@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      <a href="tel:+919361999910"><i class="fas fa-phone-alt"></i> +91 9361999910</a>
+      <a href="https://www.linkedin.com/in/raj-gopi-kalyan-m-4b52883b3" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <a href="https://github.com/rgkglary-dotcom" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+    <div class="status-badge">
+      <span class="status-dot"></span> Available for Projects
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="grid-2col">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+      <!-- Personal Info -->
+      <div class="info-card">
+        <h3><i class="fas fa-user-astronaut"></i> Personal Matrix</h3>
+        <div class="detail-item"><i class="fas fa-id-card"></i><span class="label">Identity</span><span class="value">Raj Gopi Kalyan M</span></div>
+        <div class="detail-item"><i class="fas fa-graduation-cap"></i><span class="label">Domain</span><span class="value">B.Tech Information Technology</span></div>
+        <div class="detail-item"><i class="fas fa-calendar-check"></i><span class="label">Phase</span><span class="value">Second Year</span></div>
+        <div class="detail-item"><i class="fas fa-school"></i><span class="label">Base</span><span class="value">Ramco Institute of Technology</span></div>
+        <div class="detail-item"><i class="fas fa-envelope"></i><span class="label">Signal</span><span class="value">rgkofficial.1820@gmail.com</span></div>
+        <div class="detail-item"><i class="fas fa-phone"></i><span class="label">Connect</span><span class="value">+91 9361999910</span></div>
+      </div>
+
+      <!-- Skills -->
+      <div class="info-card">
+        <h3><i class="fas fa-cogs"></i> System Specs</h3>
+        
+        <div class="skill-group">
+          <div class="skill-group-title">Core Protocols <i class="fas fa-microchip" style="color:#38bdf8; margin-left:5px;"></i></div>
+          <div class="skill-bar-wrapper">
+            <div class="skill-bar-info"><span>Web Development</span><span>85%</span></div>
+            <div class="skill-track"><div class="skill-fill w-85"></div></div>
+          </div>
+          <div class="skill-bar-wrapper">
+            <div class="skill-bar-info"><span>Python Programming</span><span>80%</span></div>
+            <div class="skill-track"><div class="skill-fill w-80"></div></div>
+          </div>
+          <div class="skill-bar-wrapper">
+            <div class="skill-bar-info"><span>Video Editing</span><span>90%</span></div>
+            <div class="skill-track"><div class="skill-fill w-90"></div></div>
+          </div>
+          <div class="skill-bar-wrapper">
+            <div class="skill-bar-info"><span>Git & GitHub</span><span>75%</span></div>
+            <div class="skill-track"><div class="skill-fill w-75"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-group" style="margin-bottom:0;">
+          <div class="skill-group-title">Human Interface <i class="fas fa-brain" style="color:#f472b6; margin-left:5px;"></i></div>
+          <div class="skill-bar-wrapper">
+            <div class="skill-bar-info"><span>Communication</span><span>90%</span></div>
+            <div class="skill-track"><div class="skill-fill w-90" style="background: linear-gradient(90deg, #f472b6, #818cf8);"></div></div>
+          </div>
+          <div class="skill-bar-wrapper">
+            <div class="skill-bar-info"><span>Problem Solving</span><span>85%</span></div>
+            <div class="skill-track"><div class="skill-fill w-85" style="background: linear-gradient(90deg, #f472b6, #818cf8);"></div></div>
+          </div>
+          <div class="skill-bar-wrapper">
+            <div class="skill-bar-info"><span>Leadership</span><span>75%</span></div>
+            <div class="skill-track"><div class="skill-fill w-75" style="background: linear-gradient(90deg, #f472b6, #818cf8);"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Participation -->
+      <div class="info-card">
+        <h3><i class="fas fa-shield-alt"></i> Achievements</h3>
+        <div class="hex-grid">
+          <div class="hex-item"><i class="fas fa-star"></i> HackerRank 3★</div>
+          <div class="hex-item"><i class="fas fa-paint-brush"></i> Web Design Clash</div>
+          <div class="hex-item"><i class="fas fa-code"></i> Hackathons</div>
+          <div class="hex-item"><i class="fas fa-video"></i> Webinars</div>
+          <div class="hex-item"><i class="fas fa-cricket"></i> Cricket</div>
+          <div class="hex-item"><i class="fas fa-film"></i> Video Editing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+      <!-- Education -->
+      <div class="resume-section">
+        <h3><i class="fas fa-sd-card"></i> Education History</h3>
+        <div class="edu-item">
+          <div class="edu-title"><i class="fas fa-school" style="color:#818cf8; margin-right:8px;"></i> Sri Jayendra Swamigal Silver Jubilee Matric HR Sec School</div>
+          <div class="edu-meta"><i class="fas fa-calendar-alt"></i> Graduated: 2025</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title"><i class="fas fa-university" style="color:#38bdf8; margin-right:8px;"></i> Ramco Institute of Technology — B.Tech IT</div>
+          <div class="edu-meta"><i class="fas fa-calendar-alt"></i> 2025 – 2029</div>
+        </div>
+        <hr style="border-color: rgba(255,255,255,0.05); margin: 1.5rem 0;" />
+        
+        <h3 style="border-bottom: none; margin-bottom: 1rem;"><i class="fas fa-database"></i> System Coursework</h3>
+        <div class="tech-pills">
+          <span class="pill highlight"><i class="fab fa-python"></i> Python</span>
+          <span class="pill"><i class="fas fa-code"></i> C Programming</span>
+          <span class="pill"><i class="fab fa-js"></i> Flask</span>
+          <span class="pill"><i class="fas fa-robot"></i> AI & ML</span>
+          <span class="pill"><i class="fas fa-sitemap"></i> DSA</span>
+          <span class="pill"><i class="fas fa-mobile-alt"></i> Responsive Web</span>
+          <span class="pill"><i class="fas fa-table"></i> DBMS</span>
+        </div>
+      </div>
+
+      <!-- Highlights -->
+      <div class="resume-section">
+        <h3><i class="fas fa-terminal"></i> Core Highlights</h3>
+        <div class="tech-pills" style="margin-top:0;">
+          <span class="pill highlight"><i class="fas fa-check-circle"></i> Web Architect</span>
+          <span class="pill highlight"><i class="fas fa-check-circle"></i> Python Developer</span>
+          <span class="pill highlight"><i class="fas fa-check-circle"></i> Video Producer</span>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 2rem; margin: 1rem 0; border: 1px dashed rgba(255,255,255,0.05);">
+          <div style="flex:1; min-width:120px;">
+            <div style="color:#64748b; font-size:0.75rem;">PROJECT MANAGEMENT</div>
+            <div style="color:#f8fafc; font-weight:600; margin-top:4px;"><i class="fas fa-tasks" style="color:#38bdf8;"></i> Agile & Tools</div>
+          </div>
+          <div style="flex:1; min-width:120px;">
+            <div style="color:#64748b; font-size:0.75rem;">COMPETITIVE RANK</div>
+            <div style="color:#f8fafc; font-weight:600; margin-top:4px;"><i class="fas fa-star" style="color:#fbbf24;"></i> HackerRank 3★</div>
+          </div>
+          <div style="flex:1; min-width:120px;">
+            <div style="color:#64748b; font-size:0.75rem;">EXTRACURRICULAR</div>
+            <div style="color:#f8fafc; font-weight:600; margin-top:4px;"><i class="fas fa-cricket" style="color:#38bdf8;"></i> Cricket & Hackathons</div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
+          <span class="pill" style="background:rgba(56,189,248,0.05); border-color:rgba(56,189,248,0.1);"><i class="fas fa-pen-fancy"></i> Webinar Speaker</span>
+          <span class="pill" style="background:rgba(56,189,248,0.05); border-color:rgba(56,189,248,0.1);"><i class="fas fa-film"></i> Video Editing Expert</span>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer-note">
+        <i class="fas fa-code"></i> system.online · <i class="fas fa-heart" style="color: #f43f5e;"></i> · v2.0
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- JS for Resume Preview & Download -->
+<script>
+  (function() {
+    // Build a simple resume content (HTML) for preview and download
+    const resumeContent = `
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Raj Gopi Kalyan Resume</title>
+<style>
+  body { font-family: 'Inter', sans-serif; background: #f0f4f8; padding: 2rem; max-width: 900px; margin: auto; color: #1e293b; }
+  .card { background: white; border-radius: 2rem; padding: 2.5rem; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+  h1 { font-size: 2.5rem; margin-bottom: 0.2rem; }
+  .sub { color: #475569; margin-bottom: 1.5rem; }
+  hr { margin: 1.5rem 0; border-color: #e2e8f0; }
+  .grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; }
+  .label { font-weight: 600; color: #64748b; }
+  .skill-bar { background: #e2e8f0; border-radius: 20px; height: 8px; margin: 8px 0; }
+  .fill { height: 8px; border-radius: 20px; background: linear-gradient(90deg,#38bdf8,#818cf8); }
+  .pill { display: inline-block; background: #e2e8f0; padding: 0.2rem 1rem; border-radius: 40px; margin: 0.2rem; font-size:0.8rem; }
+  @media (max-width:700px){ .grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Raj Gopi Kalyan M</h1>
+  <div class="sub">B
